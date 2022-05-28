@@ -94,6 +94,7 @@
             integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
             crossorigin="anonymous"></script>
     <script>
+         var url="http://192.168.43.249:8000/"
         //create
         $(document).on('click', '.btnthem', function (event) {
             event.preventDefault()
@@ -101,7 +102,7 @@
             var address = $('#address').val()
             $.ajax({
                 type: 'POST',
-                url: 'http://127.0.0.1:8000/api/publisher/',
+                url: url+'api/publisher/',
                 data: {name: name, address:address },
 
                 success: function (data) {
@@ -122,7 +123,7 @@
             $.ajax(
                 {
                     type: "GET",
-                    url: "http://127.0.0.1:8000/api/publisher/",
+                    url: url+"api/publisher/",
                     success: function (data) {
                         console.log(data)
 
@@ -156,7 +157,7 @@
             $.ajax(
                 {
                     type: "DELETE",
-                    url: 'http://127.0.0.1:8000/api/publisher/' + id,
+                    url: url+'api/publisher/' + id,
                     data: {id: id},
                     success: function (data) {
                         alert("Xóa thành công")
@@ -184,7 +185,7 @@
             var address = $('#txtaddress').val()
             $.ajax({
                 type: 'PUT',
-                url: 'http://127.0.0.1:8000/api/publisher/' + parseInt(id.trim()),
+                url: url+'api/publisher/' + parseInt(id.trim()),
                 data: {name: name, address: address},
                 success: function (data) {
                     alo()

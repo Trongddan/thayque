@@ -122,9 +122,9 @@ class Order(models.Model):
     code=models.CharField(max_length=20,default=None)
     username = models.CharField(max_length=30, default=None)
     address = models.CharField(max_length=100, default=None)
-    date=models.CharField(max_length=20,default=None);
+    date=models.CharField(max_length=30,default=None);
     phone = models.CharField(max_length=10, default=None)
-    content = models.CharField(max_length=10, default=None)
+    content = models.CharField(max_length=200, default=None)
     status=models.IntegerField(default=0)
     def __str__(self):
         return self.User

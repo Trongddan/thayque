@@ -88,7 +88,7 @@
             integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
             crossorigin="anonymous"></script>
     <script>
-
+    var url="http://192.168.43.249:8000/"
         //create
         $(document).on('click', '.btnthem', function (event) {
             event.preventDefault()
@@ -96,7 +96,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: 'http://127.0.0.1:8000/api/category/',
+                url: url+'api/category/',
                 data: {name: name},
                 success: function (data) {
                     alo()
@@ -118,7 +118,7 @@
             $.ajax(
                 {
                     type: "GET",
-                    url: "http://127.0.0.1:8000/api/category/",
+                    url: url+"api/category/",
                     success: function (data) {
                         console.log(data)
 
@@ -153,7 +153,7 @@
             $.ajax(
                 {
                     type: "DELETE",
-                    url: "http://127.0.0.1:8000/api/category/" + id,
+                    url: url+"api/category/" + id,
                     data: {id: id},
                     success: function (data) {
                         alert("Xóa thành công")
@@ -180,7 +180,7 @@
             var names = $('#txtname').val()
             $.ajax({
                 type: 'PUT',
-                url: "http://127.0.0.1:8000/api/category/" + id,
+                url: url+"api/category/" + id,
                 data: {name: names},
                 success: function (data) {
                     alo()

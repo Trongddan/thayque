@@ -171,12 +171,13 @@
             integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
             crossorigin="anonymous"></script>
     <script>
+         var url="http://192.168.43.249:8000/"
         $("form#formthem").submit(function (e) {
             e.preventDefault();
             var formData = new FormData(this) //luu ý đặt tên các trường input phải trùng vs tên trong csdl
             console.log(formData)
             $.ajax({
-                url: 'http://127.0.0.1:8000/api/shoe/',
+                url: url+'api/shoe/',
                 type: 'POST',
                 data: formData,
                 success: function (data) {
@@ -202,7 +203,7 @@
             $.ajax(
                 {
                     type: "GET",
-                    url: "http://127.0.0.1:8000/api/user/",
+                    url: url+"api/user/",
                     success: function (data) {
                         console.log(data)
 

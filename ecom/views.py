@@ -151,7 +151,14 @@ class LaptopView(ListCreateAPIView):
 
     # get danh sach danh muc
     def get_queryset(self):
-        return Laptop.objects.all()
+        laptop= Laptop.objects.filter()
+        q= self.request.query_params.get("q")
+        pro = self.request.query_params.get("pro")
+        if pro is not None:
+            laptop=laptop.filter(producer=pro)
+        if q is not None:
+            laptop= laptop.filter(name__contains=q)
+        return laptop
 
         # tao moi category
 
@@ -548,6 +555,41 @@ class UserIdView(viewsets.ViewSet):
         return JsonResponse(self.serializer_class(request.user).data, status=status.HTTP_200_OK)
 
 
+class useridView(RetrieveUpdateDestroyAPIView):
+    model = User
+    serializer_class = UserSerializer
+
+    # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    # lay chi tiet danh muc
+    def get_queryset(self):
+        User_tmp = User.objects.filter(pk=self.kwargs.get('pk'))
+        return User_tmp
+
+    # cap nhat san pham
+    def put(self, request, *args, **kwargs):
+        User_tmp = get_object_or_404(User, id=kwargs.get('pk'))
+        serializer = UserSerializer(User_tmp, data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse({
+                'message': 'Update User successful!'
+            }, status=status.HTTP_200_OK)
+
+        return JsonResponse({
+            'message': 'Update User unsuccessful!'
+        }, status=status.HTTP_400_BAD_REQUEST)
+
+    # xoa category
+    def delete(self, request, *args, **kwargs):
+        User_tmp = get_object_or_404(User, id=kwargs.get('pk'))
+        User_tmp.delete()
+
+        return JsonResponse({
+            'message': 'Delete User successful!'
+        }, status=status.HTTP_200_OK)
+
+
 class CartView(ListCreateAPIView):
     model = Cart
     serializer_class = CartSerializer
@@ -724,8 +766,11 @@ class OrderView(ListCreateAPIView):
     def get_queryset(self):
         order = Order.objects.filter()
         q = self.request.query_params.get('q')
-        if q is not None:
+        p = self.request.query_params.get('p')
+        if q is not None :
             order = order.filter(User=q)
+            if  p is not None:
+                order=order.filter(status=p)
         return order
 
     # tao moi category

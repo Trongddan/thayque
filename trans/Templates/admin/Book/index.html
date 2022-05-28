@@ -188,12 +188,13 @@
             integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
             crossorigin="anonymous"></script>
     <script>
+         var url="http://192.168.43.249:8000/"
         $("form#formthem").submit(function (e) {
             e.preventDefault();
             var formData = new FormData(this);
             console.log(formData)
             $.ajax({
-                url: 'http://127.0.0.1:8000/api/book/',
+                url: url+'api/book/',
                 type: 'POST',
                 data: formData,
                 success: function (data) {
@@ -219,7 +220,7 @@
             $.ajax(
                 {
                     type: "GET",
-                    url: "http://127.0.0.1:8000/api/book/",
+                    url: url+"api/book/",
                     success: function (data) {
                         console.log(data)
 
@@ -257,7 +258,7 @@
             $.ajax(
                 {
                     type: "DELETE",
-                    url: "http://127.0.0.1:8000/api/book/" + id,
+                    url: url+"api/book/" + id,
                     data: {id: id},
                     success: function (data) {
                         {#alert("Xóa thành công")#}
@@ -323,7 +324,7 @@
             }
 
             $.ajax({
-                url: 'http://127.0.0.1:8000/api/book/' + parseInt(id),
+                url: url+'api/book/' + parseInt(id),
                 type: 'PUT',
                 data: data,
                 success: function (data) {

@@ -24,6 +24,7 @@ urlpatterns=[
     path('shoe/', views.ShoeView.as_view()),#giay
     path('shoe/<int:pk>', views.ShoeIdView.as_view()),
     path('user/', views.UserView.as_view()),#giay
+    path('user/<int:pk>', views.useridView.as_view()),
     path('cart/', views.CartView.as_view()),  # giay
     path('cart/<int:pk>', views.CartIdView.as_view()),
     path('cartitem/', views.CartItemView.as_view()),  # giay
